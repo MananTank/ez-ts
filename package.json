@@ -2,12 +2,12 @@
   "name": "ez-ts",
   "version": "0.0.1",
   "description": "simple, easy and open typescript library bootstrap",
-  "main": "dist/index.cjs.js",
-  "module": "dist/index.esm.js",
-  "types": "dist/index.d.js",
+  "main": "dist/lib.cjs.js",
+  "module": "dist/lib.esm.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "lint": "eslint --fix src/**",
-    "build": "npm run lint && rollup -c",
+    "build": "rm -rf dist/ npm run lint && rollup -c",
     "dev": "rollup -c -w --dev",
     "test": "jest"
   },
