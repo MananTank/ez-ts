@@ -3,6 +3,16 @@ import typescript from 'rollup-plugin-typescript2';
 import {terser} from 'rollup-plugin-terser';
 import pkg from './package.json';
 
+const minifier = terser({
+  compress: true,
+  mangle: {
+    // mangle properties that starts with _
+    properties: {
+      regex: /^_/,
+    },
+  },
+});
+
 const outputs = [
   // esm
   {
@@ -18,9 +28,7 @@ const outputs = [
   {
     file: 'dist/index.cjs.prod.js',
     format: 'cjs',
-    plugins: [
-      terser(),
-    ],
+    plugins: [minifier],
   },
 
 ];
@@ -28,7 +36,7 @@ const outputs = [
 export default (args) => {
   return {
     input: './src/index.ts',
-    // only build esm during library development
+    // no need to build all in development - only build esm
     output: args.dev ? outputs[0] : outputs,
     plugins: [
       typescript(),
