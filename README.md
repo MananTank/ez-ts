@@ -1,6 +1,6 @@
-# ✨ezts
+# 🧁 ez-ts
 
-## simple, no bs TS library bootstrap
+### simple, easy and open typescript library bootstrap
 
 `typescript` `jest` `rollup` `eslint`
 

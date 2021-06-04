@@ -1,7 +1,7 @@
 {
-  "name": "@xerx/create-ts-lib",
+  "name": "ez-ts",
   "version": "0.0.1",
-  "description": "simple no-bs typescript library bootstrap",
+  "description": "simple, easy and open typescript library bootstrap",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
   "types": "dist/index.d.js",
