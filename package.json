@@ -1,0 +1,41 @@
+{
+  "name": "nuets",
+  "version": "0.0.1",
+  "description": "xxx",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.js",
+  "scripts": {
+    "lint": "eslint --fix src/**",
+    "build": "npm run lint && rollup -c",
+    "dev": "rollup -c -w --dev",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/<user>/<lib>.git"
+  },
+  "keywords": [
+    "typescript"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/<user>/<lib>/issues"
+  },
+  "homepage": "https://github.com/<user>/<lib>#readme",
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "^13.0.0",
+    "@types/jest": "^26.0.20",
+    "@typescript-eslint/eslint-plugin": "^4.26.0",
+    "@typescript-eslint/parser": "^4.26.0",
+    "eslint": "^7.27.0",
+    "eslint-config-google": "^0.14.0",
+    "jest": "^26.6.3",
+    "rollup": "^2.50.6",
+    "rollup-plugin-terser": "^7.0.2",
+    "rollup-plugin-typescript2": "^0.30.0",
+    "ts-jest": "^26.4.4",
+    "typescript": "^4.1.3"
+  }
+}
