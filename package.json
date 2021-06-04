@@ -1,7 +1,7 @@
 {
-  "name": "nuets",
+  "name": "@xerx/create-ts-lib",
   "version": "0.0.1",
-  "description": "xxx",
+  "description": "simple no-bs typescript library bootstrap",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
   "types": "dist/index.d.js",
