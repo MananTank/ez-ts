@@ -1,23 +1,22 @@
 // @ts-check
-import typescript from 'rollup-plugin-typescript2';
+import typescript from 'rollup-plugin-ts';
 import {terser} from 'rollup-plugin-terser';
 import pkg from './package.json';
-import fs from 'fs';
 
 const minifier = terser({
   compress: true,
-  mangle: {
-    // mangle properties that starts with _
-    properties: {
-      regex: /^_/,
-    },
-  },
+  // mangle these property names 'foo' and 'bar'
+  // mangle: {
+  //   properties: {
+  //     regex: /^(foo|bar)$/,
+  //   },
+  // },
 });
 
 const outputs = [
   // esm
   {
-    file: pkg.module,
+    file: 'dist/lib.esm.js',
     format: 'esm',
   },
   // cjs.dev
@@ -31,35 +30,21 @@ const outputs = [
     format: 'cjs',
     plugins: [minifier],
   },
-
+  // umd
+  {
+    file: 'dist/lib.umd.js',
+    name: pkg.name,
+    format: 'umd',
+  },
 ];
 
 export default (args) => {
-  createLibCjs();
   return {
     input: './src/index.ts',
-    // no need to build all in development - only build esm
+    // only build esm in development
     output: args.dev ? outputs[0] : outputs,
     plugins: [
       typescript(),
     ],
   };
-};
-
-const createLibCjs = () => {
-  const code = `\
-if (process.env.NODE_ENV !== 'production') {
-  module.exports = require('./lib.cjs.dev.js');
-} else {
-  module.exports = require('./lib.cjs.prod.js');
-};`;
-
-  fs.mkdirSync('./dist', {recursive: true});
-
-  fs.writeFile('./dist/lib.cjs.js', code, (err) => {
-    if (err) {
-      console.error(err);
-      return;
-    }
-  });
 };
