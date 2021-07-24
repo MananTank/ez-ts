@@ -2,6 +2,7 @@
 import typescript from 'rollup-plugin-ts';
 import {terser} from 'rollup-plugin-terser';
 import pkg from './package.json';
+import fs from 'fs'
 
 const minifier = terser({
   compress: true,
@@ -39,6 +40,7 @@ const outputs = [
 ];
 
 export default (args) => {
+  createCjsFile()
   return {
     input: './src/index.ts',
     // only build esm in development
@@ -48,3 +50,18 @@ export default (args) => {
     ],
   };
 };
+
+const createCjsFile = () => {
+  const code = `\
+if (process.env.NODE_ENV !== 'production') {
+  module.exports = require('./lib.cjs.dev.js');
+} else {
+  module.exports = require('./lib.cjs.prod.js');
+};`
+
+  fs.mkdirSync('./dist', { recursive: true })
+
+  fs.writeFile('./dist/lib.cjs.js', code, (err) => {
+    if (err) console.error(err)
+  })
+}
