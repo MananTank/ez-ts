@@ -8,9 +8,13 @@
 * `typescript` + `jest` + `eslint` configured
 * npm scripts setup for `test`, `dev` and `build`
 
-### 📩 Install
+### 📩 Initialize
 
-clone this repo and run `npm install` - that's it
+```bash
+npx degit https://github.com/MananTank/ez-ts#main
+```
+
+## scripts
 
 ### ⚒ Develop
 
